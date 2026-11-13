@@ -1,5 +1,10 @@
 编译指令：
-colcon build --packages-select nav_homework --symlink-install
+source /opt/ros/humble/setup.bash
+mkdir -p ~/ros2_ws/src
+cd ~/ros2_ws/src
+git clone https://github.com/qmjcio/Nav_homework.git nav_homework
+cd ~/ros2_ws
+colcon build --packages-select nav_homework
 source install/setup.bash
 ros2 launch nav_homework nav_homework.launch.py
 设计思路：
