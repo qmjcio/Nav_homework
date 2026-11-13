@@ -1,0 +1,25 @@
+global_costmap:
+  ros__parameters:
+    global_frame: map
+    robot_base_frame: base_link
+    use_sim_time: false
+
+    resolution: 0.02          # 必须与 mymap.yaml 一致，否则 static_layer 会重采样
+    track_unknown_space: false  
+    always_send_full_costmap: true
+
+  
+    robot_radius: 0.22        
+
+    
+    plugins: ["static_layer", "inflation_layer"]
+
+    static_layer:
+      plugin: "nav2_costmap_2d::StaticLayer"
+      map_subscribe_transient_local: true   # 必须 true，否则收不到 map_server 的 latched 地图
+      subscribe_to_updates: false
+
+    inflation_layer:
+      plugin: "nav2_costmap_2d::InflationLayer"
+      cost_scaling_factor: 3.0            # 越大，代价衰减越快，越贴墙走
+      inflation_radius: 0.55             
