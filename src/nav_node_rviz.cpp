@@ -40,7 +40,7 @@ double heuristic(int x1,int y1,int x2,int y2)
     double DY = std::abs(y1 - y2);
     //记不住这个距离叫什么……反正原理就是把长方形切割成一个最大正方形和一个长方形，
     //关于为什么不用欧式距离：
-    // 因为我写的逻辑是八方向移动，用这种计算方法效率更高，在八向移动的情况下可以证明欧式距离和我这样算是等价的
+    // 因为我写的逻辑是八方向移动，用这种计算方法效率更高
    return std::max(DX, DY) + (std::sqrt(2.0) - 1.0) * std::min(DX, DY);
 }
 
@@ -257,7 +257,7 @@ int main(int argc, char* argv[])
 {
     rclcpp::init(argc, argv);
     auto node = std::make_shared<NavNode>();//我要用NavNode这个节点
-    rclcpp::executors::MultiThreadedExecutor exec;
+    rclcpp::executors::MultiThreadedExecutor exec;//多线程运行，效率更高
     exec.add_node(node);
     exec.add_node(node->costmapNode()->get_node_base_interface());//把costmapNode的接口接上，上面那个不需要的原因是NavNode继承了来自父节点的接口
     exec.spin();
