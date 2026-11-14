@@ -1,3 +1,5 @@
+依赖：
+sudo apt install -y ros-humble-nav2-costmap-2d ros-humble-nav2-map-server
 编译指令：
 source /opt/ros/humble/setup.bash
 mkdir -p ~/ros2_ws/src
